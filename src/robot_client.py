@@ -23,18 +23,18 @@ class RobotClient:
         if not m: raise RuntimeError(f"Réponse mal formée/adresse inattendue: '{resp}'")
         return m.group(1), m.group(2)
     def get_pos(self) -> int:
-        st, v = self.send(f"/{self.addr} get pos")
+        st, v = self.send(f"/{self.addr} get pos");
         if st != "OK": raise RuntimeError(f"get pos rejeté: {v}")
         return int(v)
     def get_speed(self) -> int:
-        st, v = self.send(f"/{self.addr} get speed")
+        st, v = self.send(f"/{self.addr} get speed");
         if st != "OK": raise RuntimeError(f"get speed rejeté: {v}")
         return int(v)
     def set_speed(self, s: int):
-        st, v = self.send(f"/{self.addr} set speed {s}")
+        st, v = self.send(f"/{self.addr} set speed {s}");
         if st != "OK": raise RuntimeError(f"set speed rejeté: {v}")
     def move(self, d: int):
-        st, v = self.send(f"/{self.addr} move {d}")s
+        st, v = self.send(f"/{self.addr} move {d}");
         if st != "OK": raise RuntimeError(f"move rejeté: {v}")
     def wait_until(self, target: int, timeout_s=10.0, poll=0.05, settle_reads=3):
         end = time.time() + timeout_s; last = []
